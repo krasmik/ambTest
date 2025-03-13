@@ -8,6 +8,7 @@ from pages.popups.cancel_popup import CancelPopup
 @allure.title("Verify that welcome text appears after clicking Next")
 def test_welcome_text(app):
     with allure.step("Open Setup Page and click Next"):
+        print(app.print_control_identifiers())
         setup_page = SetupPage(app)
         setup_page.click_next()
 
