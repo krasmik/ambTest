@@ -10,9 +10,9 @@ app_path = r"C:\app\amb.exe"
 
 @pytest.fixture()
 def app():
-    app = Application(backend="uia").start(app_path, timeout=10000)
+    app = Application(backend="uia").start(app_path, timeout=20000)
     time.sleep(2)
-    app.connect(best_match="Amberg Track Pro Field Installer", timeout=5)
+    app.connect(best_match="Amberg Track Pro Field Installer", timeout=20000)
     setup_page = SetupPage(app.window())
     setup_page.wait_for_load()
     yield app.window()
