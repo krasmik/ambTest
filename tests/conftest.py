@@ -1,12 +1,11 @@
-import platform
-import allure
 import pytest
-from pywinauto import Application
 import os
 import time
+import platform
+import allure
+from pywinauto import Application
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-app_path = os.path.join(BASE_DIR, "..", "app", "amb.exe")
+app_path = r"C:\app\amb.exe"
 
 @pytest.fixture()
 def app():
@@ -19,11 +18,13 @@ def app():
 @pytest.fixture(scope="session", autouse=True)
 def add_environment_info():
     os.makedirs("allure-results", exist_ok=True)
+
     env_info = {
         "OS": f"{platform.system()} {platform.release()}",
         "Python Version": platform.python_version(),
         "Processor": platform.processor(),
     }
+
     with open(os.path.join("allure-results", "environment.properties"), "w") as f:
         for key, value in env_info.items():
             f.write(f"{key}={value}\n")
